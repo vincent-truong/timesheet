@@ -23,9 +23,10 @@ module.exports = function(passport){
     passport.use('local-signup', new LocalStrategy({
         usernameField : 'username',
         passwordField : 'password',
-        passReqToCallBack: true},
-        function(req, email, password, done) {
-        //asynchronous
+        passReqToCallBack: true
+        },
+        function(req, username, password, done) {
+            //asynchronous
             process.nextTick(function(){
                 ///find user whose name is same as one in form
                User.findOne({'local.name':username}, function(err,user){
