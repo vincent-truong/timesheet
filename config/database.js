@@ -1,3 +1,3 @@
 module.exports = {
-    'url' : 'vmongodb://localhost/timesheetdb'
+    'url' : 'mongodb://localhost/timesheetdb'
 }

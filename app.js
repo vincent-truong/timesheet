@@ -19,17 +19,18 @@ var session = require('express-session');
 //db
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url);
+require('./config/passport')(passport);
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+//app.set('views', path.join(__dirname, 'views'));
 //app.set('view engine', 'jade');
 app.set('view engine', 'ejs');
 
 
 
 //routes
-app.use('/', index);
-app.use('/users', users);
+//app.use('/', index);
+//app.use('/users', users);
 
 
 // uncomment after placing your favicon in /public
@@ -46,7 +47,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-require('./config/passport')(passport);
+//routes
+require('./app/routes.js')(app, passport);
+
 
 // catch 404 and forward to error handler
 /*app.use(function(req, res, next) {
