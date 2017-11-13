@@ -30,18 +30,15 @@ module.exports = function(app,passport) {
     }));
 
     //--timesheet section---
-    app.get('/timesheet', isLoggedIn, function (req, res) {
-        //render
-        res.render('timesheet.ejs', {
-            user: req.user
-        });
+    app.get('/timesheet', function(req, res) {
+        res.sendFile('../public/timesheet.html', {root: __dirname})
     });
 
-    //---logout---
+   /* //---logout---
     app.get('/logout', function (req, res) {
         req.logout();
         res.resdirect('/');
-    });
+    });*/
 };
 
 //middleware to check if logged in

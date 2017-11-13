@@ -15,6 +15,7 @@ var mongoose = require('mongoose');
 var flash    = require('connect-flash');
 var passport = require('passport');
 var session = require('express-session');
+var path = require('path');
 
 //db
 var configDB = require('./config/database.js');
@@ -40,6 +41,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 //passport
 app.use(session({secret: 'secret'}));

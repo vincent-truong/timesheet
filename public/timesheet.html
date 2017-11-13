@@ -1,25 +1,22 @@
-<!-- sign up-->
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Timesheet</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-        body        { padding-top:80px; }
-    </style>
+    <link rel="stylesheet" href="../public/stylesheets/style.css">
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap-theme.min.css">
 </head>
-
 <body>
-        <table class="table">
-            <thead>
+    <table class="table">
+        <thead>
             <tr>
                 <th>Project</th>
                 <th>Task</th>
                 <th>Hrs.</th>
             </tr>
-            </thead>
-            <tbody>
+        </thead>
+        <tbody>
             <h1>Username</h1>
 
             <a href="" class="btn btn-default btn-sm">Profile</a>
@@ -85,31 +82,32 @@
                     </div>
                 </td>
             </tr>
-        </table>
-        <h2>Task List</h2>
+    </table>
+    <h2>Task List</h2>
 
-        <script type="text/javascript">
-            function showForm() {
-                var selopt = document.getElementById("selectProject").value;
-                if (selopt == "Power") {
-                    document.getElementById("selectPowerTask").style.display = "block";
-                    document.getElementById("selectTerminalTask").style.display = "none";
-                    document.getElementById("selectBlank").style.display = "none";
-                }
-                if (selopt == "Terminal") {
-                    document.getElementById("selectTerminalTask").style.display = "block";
-                    document.getElementById("selectPowerTask").style.display = "none";
-                    document.getElementById("selectBlank").style.display = "none";
-                }
-                if (selopt == 0) {
-                    document.getElementById("selectTerminalTask").style.display = "none";
-                    document.getElementById("selectPowerTask").style.display = "none";
-                    document.getElementById("selectBlank").style.display = "block";
-                }
+    <script type="text/javascript">
+        function showForm() {
+            var selopt = document.getElementById("selectProject").value;
+            if (selopt == "Power") {
+                document.getElementById("selectPowerTask").style.display = "block";
+                document.getElementById("selectTerminalTask").style.display = "none";
+                document.getElementById("selectBlank").style.display = "none";
             }
-        </script>
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="../public/javascripts/bootstrap.min.js"></script>
-<script src="../public/javascripts/bootstrap.js"></script>
+            if (selopt == "Terminal") {
+                document.getElementById("selectTerminalTask").style.display = "block";
+                document.getElementById("selectPowerTask").style.display = "none";
+                document.getElementById("selectBlank").style.display = "none";
+            }
+            if (selopt == 0) {
+                document.getElementById("selectTerminalTask").style.display = "none";
+                document.getElementById("selectPowerTask").style.display = "none";
+                document.getElementById("selectBlank").style.display = "block";
+            }
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="../public/javascripts/bootstrap.min.js"></script>
+    <script src="../public/javascripts/bootstrap.js"></script>
 </body>
 </html>
