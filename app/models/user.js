@@ -9,9 +9,9 @@ var bcrypt   = require('bcrypt-nodejs');
 var userSchema = mongoose.Schema({
     local : {
         name : String,
-        password: String,
+        password: String
     }
-})
+});
 
 //check if password is valid
 userSchema.methods.validPassword = function(password) {

@@ -21,15 +21,15 @@ module.exports = function(passport){
     //---signup---
 
     passport.use('local-signup', new LocalStrategy({
-        usernameField : 'username',
+        usernameField : 'name',
         passwordField : 'password',
-        passReqToCallBack: true
+        passReqToCallback: true
         },
-        function(req, username, password, done) {
+        function(req, name, password, done) {
             //asynchronous
             process.nextTick(function(){
                 ///find user whose name is same as one in form
-               User.findOne({'local.name':username}, function(err,user){
+               User.findOne({'local.name':name}, function(err,user){
                    //if errors, return error
                    if  (err)
                        return done(err);
@@ -43,7 +43,7 @@ module.exports = function(passport){
                        var newUser = new User();
 
                        //set credentials
-                       newUser.local.name = username;
+                       newUser.local.name = name;
                        newUser.local.password = password;
 
                        //save user
