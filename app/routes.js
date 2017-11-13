@@ -1,13 +1,19 @@
 module.exports = function(app,passport) {
     //---login---
     //show login
-    app.get('/login', function (req, res) {
+    app.get('/', function (req, res) {
         //render the page
         res.render('index.ejs', {message: req.flash('loginMessage')})
     });
 
     //process login
-    // app.post('/login')
+     app.post('/', passport.authenticate('local-login',{
+         successRedirect: '/timesheet',
+         failureRedirect: '/',
+         failureFlash: true
+     }));
+
+
 
     //---signup---
     //show signup
@@ -16,7 +22,7 @@ module.exports = function(app,passport) {
         res.render('signup.ejs', {message: req.flash('signupMessage')})
     });
 
-    //process login
+    //process signup
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect: '/timesheet',
         failureRedirect: '/signup',
@@ -34,7 +40,7 @@ module.exports = function(app,passport) {
     //---logout---
     app.get('/logout', function (req, res) {
         req.logout();
-        res.resdirect('/login');
+        res.resdirect('/');
     });
 };
 
@@ -43,5 +49,7 @@ function isLoggedIn(req, res, next) {
     //if user is authenticated in session
     if (req.isAuthenticated())
         return next();
+
+    res.redirect('/');
 }
 
