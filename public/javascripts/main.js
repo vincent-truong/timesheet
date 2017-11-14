@@ -20,18 +20,26 @@ function showForm() {
 
 
 //taskList Array
-var taskListData = [];
+//var taskListData = [];
 
-//DOM Ready
+/*DOM Ready
 $(document).ready(function(){
     //populate task list on initial load
     console.log("initial load");
   //  populateTable();
-});
+});*/
+
+//on select date, show only pertinent tasks that exist to that date if exists
+/*$('#datepicker').datepicker({
+    onSelect: function() {
+        populateTable();
+    }
+});*/
 
 //add task button click
 $('#addTask').on('click', addTask);
 
+//add task to db and display it with ajax
 function addTask(event){
   event.preventDefault();
   var newTask = {
@@ -64,23 +72,27 @@ function addTask(event){
 function populateTable(){
     //content string
     var tableContent ='';
-    console.log("Inside populateTable()");
 
     //clear table first
     $('#tasklist table tbody tr').remove();
 
     //AJAX call to get tasks
-    $.getJSON('/tasks', function (data){
+    $.getJSON('/tasks',{ date:$('#datepicker').val() }, function (data){
         //for each item, construct table row and cells and add to string
         $.each(data, function(){
-            tableContent += '<tr>';
-            tableContent += '<td>' + this.local.project + '</td>';
-            tableContent += '<td>' + this.local.task + '</td>';
-            tableContent += '<td>' + this.local.hours + '</td>';
-            tableContent += '/<tr>';
+            if(data!==undefined)
+            {   tableContent += '<tr>';
+                tableContent += '<td>' + this.local.project + '</td>';
+                tableContent += '<td>' + this.local.task + '</td>';
+                tableContent += '<td>' + this.local.hours + '</td>';
+                tableContent += '/<tr>';
+            }
         });
 
         //inject to content string
         $('#taskList table tbody').html(tableContent);
     });
+
+
 };
+

@@ -57,11 +57,13 @@ module.exports = function(app,passport) {
     });*/
 
     app.get('/tasks',function(req,res){
-       console.log('Fetching tasks');
+      // console.log('Fetching tasks');
+      console.log(req.query.date);
         //find all tasks
-        TaskModel.find({}, function(err, result){
+        TaskModel.find({'local.id':req.query.date}, function(err, result){
             if ( err ) throw err;
             //Save the result into the response object.
+          //  console.log('%s%s%s',TaskModel.local.id,TaskModel.local.project,TaskModel.local.hours);
             res.json(result);
         });
     });
@@ -97,3 +99,9 @@ function isLoggedIn(req, res, next) {
     res.redirect('/');
 }
 
+function getUrlParameter(name) {
+name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+var results = regex.exec(location.search);
+return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+};
