@@ -42,7 +42,7 @@ module.exports = function(app,passport) {
         res.sendFile(path.resolve('public/timesheet.html'));
     });
 
-    app.post('/timesheet', function(req,res){
+    /*app.post('/timesheet', function(req,res){
        console.log("adding new task");
         var newTask = new Task();
         newTask.local.id = req.body.date;
@@ -54,7 +54,7 @@ module.exports = function(app,passport) {
             if (err) return handleError(err);
         });
 
-    });
+    });*/
 
     app.get('/tasks',function(req,res){
        console.log('Fetching tasks');
@@ -64,6 +64,21 @@ module.exports = function(app,passport) {
             //Save the result into the response object.
             res.json(result);
         });
+    });
+
+    app.post('/tasks',function(req,res){
+        var newTask = new Task();
+        newTask.local.id = req.body.id;
+        newTask.local.project=req.body.project;
+        newTask.local.task=req.body.task;
+        newTask.local.hours=req.body.hours;
+
+        newTask.save(function(err, result){
+            res.send(
+                (err === null) ? { msg: '' } : { msg: err }
+            );
+        });
+
     });
 
    /* //---logout---
