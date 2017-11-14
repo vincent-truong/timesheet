@@ -1,6 +1,6 @@
 //load
-var mongoose = require('mongoose');
 var Task = require('../app/models/task');
+var mongoose = require('mongoose');
 var TaskModel = mongoose.model('Task');
 
 module.exports = function(app,passport) {
@@ -34,13 +34,14 @@ module.exports = function(app,passport) {
     }));
 
     //-----------------timesheet-----------------
-    app.get('/timesheet', isLoggedIn, function (req, res) {
-        var path = require('path');
-        res.sendFile(path.resolve('public/timesheet.html'));
-
+    app.get('/timesheet', isLoggedIn, function(req, res) {
+        res.render('timesheet.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
     });
 
-    ////-----------------Tasks list-----------------
+    //-----------------Tasks list-----------------
+    //retrieve tasks
     app.get('/tasks', function (req, res) {
         console.log(req.query.date);
 
@@ -52,6 +53,7 @@ module.exports = function(app,passport) {
         });
     });
 
+    //create tasks
     app.post('/tasks', function (req, res) {
         //create model with required data
         var newTask = new Task();
@@ -69,7 +71,7 @@ module.exports = function(app,passport) {
 
     });
 
-    //---logout---
+    //-----------------Logout-----------------
     app.get('/logout', function (req, res) {
         req.logout();
         res.resdirect('/');
@@ -82,6 +84,7 @@ module.exports = function(app,passport) {
         if (req.isAuthenticated())
             return next();
 
+        //otherwise return to login
         res.redirect('/');
     }
 };

@@ -100,7 +100,5 @@ function populateTable(){
         //inject to html
         $('#taskList table tbody').html(tableContent);
     });
-
-
 };
 
