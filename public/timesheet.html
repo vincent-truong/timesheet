@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="stylesheets/style.css">
     <link rel="stylesheet" href="stylesheets/bootstrap.css">
     <link rel="stylesheet" href="stylesheets/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
@@ -30,89 +30,77 @@
             <a href="" class="btn btn-default btn-sm">Profile</a>
             <a href="" class="btn btn-default btn-sm">Projects</a>
             <a href="" class="btn btn-default btn-sm">Logout</a>
-            <h3>Date: <input type="text" id="datepicker"></h3>
-            <tr>
-                <td>
-                    <!-- Select Project -->
-                    <div class="form-group">
 
-                        <div class="col-md-3">
-                            <select id="selectProject" name="selectProject" class="form-control" onchange="showForm()">
-                                <option value="0">Select</option>
-                                <option value="Power">Power</option>
-                                <option value="Terminal">Terminal</option>
-                            </select>
+
+            <form action="/timesheet" method="post">
+                <!--Select Date -->
+                <h3>Date: <input type="text" name="date" id="datepicker"></h3>
+                <tr>
+                    <td>
+                        <!-- Select Project -->
+                        <div class="form-group">
+
+                            <div class="col-md-3">
+                                <select id="selectProject" name="selectProject" class="form-control" onchange="showForm()">
+                                    <option value="0">Select</option>
+                                    <option value="Power">Power</option>
+                                    <option value="Terminal">Terminal</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td>
-                    <!-- Select Task -->
-                    <div class="form-group" style="display:block"  id="selectBlank">
+                    </td>
+                    <td>
+                        <!-- Select Task -->
+                        <div class="form-group" style="display:block"  id="selectBlank">
 
-                        <div class="col-md-3">
-                            <select id="selectBTask" name="selectBlank" class="form-control" onchange="showForm()">
-                                <option value="Blank"></option>
-                            </select>
+                            <div class="col-md-3">
+                                <select id="selectBTask" name="selectBlank" class="form-control" onchange="showForm()">
+                                    <option value="Blank"></option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group" style="display:none"  id="selectPowerTask">
+                        <div class="form-group" style="display:none"  id="selectPowerTask">
 
-                        <div class="col-md-3">
-                            <select id="selectPTask" name="selectPowerTask" class="form-control" onchange="showForm()">
-                                <option value="Coding">Coding</option>
-                                <option value="Testing">Testing</option>
-                                <option value="Documentation">Documentation</option>
-                            </select>
+                            <div class="col-md-3">
+                                <select id="selectPTask" name="selectPowerTask" class="form-control" onchange="showForm()">
+                                    <option value="Coding">Coding</option>
+                                    <option value="Testing">Testing</option>
+                                    <option value="Documentation">Documentation</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group" style="display:none"  id="selectTerminalTask">
+                        <div class="form-group" style="display:none"  id="selectTerminalTask">
 
-                        <div class="col-md-3">
-                            <select id="selectTTask" name="selectTerminalTask" class="form-control" onchange="showForm()">
-                                <option value="Planning">Planning</option>
-                                <option value="Coding">Coding</option>
-                                <option value="Documentation">Documentation</option>
-                            </select>
+                            <div class="col-md-3">
+                                <select id="selectTTask" name="selectTerminalTask" class="form-control" onchange="showForm()">
+                                    <option value="Planning">Planning</option>
+                                    <option value="Coding">Coding</option>
+                                    <option value="Documentation">Documentation</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="hours">
-                    </div>
-                </td>
+                    </td>
+                    <td>
+                        <!-- Enter hours -->
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="hours">
+                        </div>
+                    </td>
 
-                <td>
-                    <div class="form-group">
-                        <button id="addTask" class="btn btn-primary" >Add</button>
-                    </div>
-                </td>
-            </tr>
+                    <td>
+                        <!-- Add task (POST)-->
+                        <div class="form-group">
+                            <button type="submit" id="addTask" class="btn btn-primary" >Add</button>
+                        </div>
+                    </td>
+                </tr>
+            </form>
     </table>
     <h2>Task List</h2>
 
-    <script type="text/javascript">
-        function showForm() {
-            var selopt = document.getElementById("selectProject").value;
-            if (selopt == "Power") {
-                document.getElementById("selectPowerTask").style.display = "block";
-                document.getElementById("selectTerminalTask").style.display = "none";
-                document.getElementById("selectBlank").style.display = "none";
-            }
-            if (selopt == "Terminal") {
-                document.getElementById("selectTerminalTask").style.display = "block";
-                document.getElementById("selectPowerTask").style.display = "none";
-                document.getElementById("selectBlank").style.display = "none";
-            }
-            if (selopt == 0) {
-                document.getElementById("selectTerminalTask").style.display = "none";
-                document.getElementById("selectPowerTask").style.display = "none";
-                document.getElementById("selectBlank").style.display = "block";
-            }
-        }
-    </script>
+
     <script src="javascripts/bootstrap.min.js"></script>
     <script src="javascripts/bootstrap.js"></script>
     <script src="javascripts/main.js"></script>

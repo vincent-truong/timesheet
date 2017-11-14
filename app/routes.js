@@ -1,5 +1,7 @@
+//load
+var Task = require('../app/models/task');
 module.exports = function(app,passport) {
-    //---login---
+    //-----------------login-----------------
     //show login
     app.get('/', function (req, res) {
         //render the page
@@ -15,7 +17,7 @@ module.exports = function(app,passport) {
 
 
 
-    //---signup---
+    //-----------------signup-----------------
     //show signup
     app.get('/signup', function (req, res) {
         //render the page
@@ -29,10 +31,24 @@ module.exports = function(app,passport) {
         failureFlash: true
     }));
 
-    //--timesheet section---
+    //-----------------timesheet-----------------
     app.get('/timesheet', function(req, res) {
         var path = require('path');
         res.sendFile(path.resolve('public/timesheet.html'));
+    });
+
+    app.post('/timesheet', function(req,res){
+       console.log("adding new task");
+        var newTask = new Task();
+        newTask.local.id = req.body.date;
+        newTask.local.project=req.body.selectProject;
+        newTask.local.task=req.body.selectPowerTask;
+        newTask.local.hours=req.body.hours;
+
+        newTask.save(function(err){
+            if (err) return handleError(err);
+        });
+
     });
 
    /* //---logout---
