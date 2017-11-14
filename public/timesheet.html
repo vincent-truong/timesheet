@@ -18,6 +18,7 @@
 <body>
     <table class="table">
         <thead>
+            <!--Headings-->
             <tr>
                 <th>Project</th>
                 <th>Task</th>
@@ -25,11 +26,12 @@
             </tr>
         </thead>
         <tbody>
-            <h1>Username</h1>
+            <h1 onload=changeUserName() id="username">Username</h1>
 
+            <!--Buttons-->
             <button type="button" class="btn btn-default btn-md">Profile</button>
             <button type="button" class="btn btn-default btn-md">Projects</button>
-            <button type="button" class="btn btn-default btn-md">Logout</button>
+            <a href="\" class="btn btn-default btn-md">Logout</a>
 
                 <!--Select Date -->
                 <h3>Date: <input type="text" name="date" id="datepicker"></h3>
@@ -88,7 +90,7 @@
                     </td>
 
                     <td>
-                        <!-- Add task (POST)-->
+                        <!-- Add task (AJAX thru js file)-->
                         <div class="form-group">
                             <button type="submit" id="addTask" class="btn btn-primary" >Add</button>
                         </div>
@@ -96,6 +98,7 @@
                 </tr>
 
     </table>
+    <!--List of tasks-->
     <h2>Task List</h2>
     <div id="taskList">
         <table class="table table-striped">

@@ -34,7 +34,7 @@ module.exports = function(passport){
                    if  (err)
                        return done(err);
 
-                   //check to see if already user with that email
+                   //check to see if already exists user with that name
                    if (user){
                        return done(null, false, req.flash('signupMessage', 'That username is already taken'));
                    }else {

@@ -18,10 +18,6 @@ function showForm() {
 }
 
 
-
-//taskList Array
-//var taskListData = [];
-
 /*DOM Ready
 $(document).ready(function(){
     //populate task list on initial load
@@ -30,11 +26,11 @@ $(document).ready(function(){
 });*/
 
 //on select date, show only pertinent tasks that exist to that date if exists
-/*$('#datepicker').datepicker({
+$('#datepicker').datepicker({
     onSelect: function() {
         populateTable();
     }
-});*/
+});
 
 //add task button click
 $('#addTask').on('click', addTask);
@@ -42,12 +38,24 @@ $('#addTask').on('click', addTask);
 //add task to db and display it with ajax
 function addTask(event){
   event.preventDefault();
+
+  //determine if selected Power or Terminal project and adjust values accordingly
+  var project = $('#selectProject').val();
+  var task;
+  if (project === 'Power')
+      task='#selectPTask';
+  else
+      task='#selectTTask';
+
+  //data to be saved
   var newTask = {
       'id': $('#datepicker').val(),
-      'project': $('#selectProject').val(),
-      'task': $('#selectPTask').val(),
+      'project': project,
+      'task': $(task).val(),
       'hours': $('#hours').val()
   };
+
+  //ajax call to create
   $.ajax({
       type: 'POST',
       data: newTask,
@@ -89,7 +97,7 @@ function populateTable(){
             }
         });
 
-        //inject to content string
+        //inject to html
         $('#taskList table tbody').html(tableContent);
     });
 
