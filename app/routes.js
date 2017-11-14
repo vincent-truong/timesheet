@@ -31,7 +31,8 @@ module.exports = function(app,passport) {
 
     //--timesheet section---
     app.get('/timesheet', function(req, res) {
-        res.sendFile('../public/timesheet.html', {root: __dirname})
+        var path = require('path');
+        res.sendFile(path.resolve('public/timesheet.html'));
     });
 
    /* //---logout---

@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Timesheet</title>
-    <link rel="stylesheet" href="../public/stylesheets/style.css">
-    <link rel="stylesheet" href="../public/stylesheets/bootstrap.css">
-    <link rel="stylesheet" href="../public/stylesheets/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="stylesheets/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#datepicker" ).datepicker();
+        } );
+    </script>
 </head>
 <body>
     <table class="table">
@@ -22,7 +30,7 @@
             <a href="" class="btn btn-default btn-sm">Profile</a>
             <a href="" class="btn btn-default btn-sm">Projects</a>
             <a href="" class="btn btn-default btn-sm">Logout</a>
-            <h3>Date:</h3>
+            <h3>Date: <input type="text" id="datepicker"></h3>
             <tr>
                 <td>
                     <!-- Select Project -->
@@ -105,9 +113,8 @@
             }
         }
     </script>
-
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="../public/javascripts/bootstrap.min.js"></script>
-    <script src="../public/javascripts/bootstrap.js"></script>
+    <script src="javascripts/bootstrap.min.js"></script>
+    <script src="javascripts/bootstrap.js"></script>
+    <script src="javascripts/main.js"></script>
 </body>
 </html>
