@@ -17,6 +17,33 @@ function showForm() {
     }
 }
 
-function populateTable(){
 
-}
+//taskList Array
+var taskListData = [];
+
+//DOM Ready
+$(document).ready(function(){
+    //populate task list on initial load
+    console.log("initial load");
+    populateTable();
+});
+
+function populateTable(){
+    //content string
+    var tableContent ='';
+    console.log("Inside populateTable()");
+    //AJAX call to get tasks
+    $.getJSON('/tasks', function (data){
+        //for each item, construct table row and cells and add to string
+        $.each(data, function(){
+            tableContent += '<tr>';
+            tableContent += '<td>' + this.local.project + '</td>';
+            tableContent += '<td>' + this.local.task + '</td>';
+            tableContent += '<td>' + this.local.hours + '</td>';
+            tableContent += '/<tr>';
+        });
+
+        //inject to content string
+        $('#taskList table tbody').html(tableContent);
+    });
+};

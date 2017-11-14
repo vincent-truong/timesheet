@@ -1,5 +1,10 @@
 //load
 var Task = require('../app/models/task');
+var mongoose = require('mongoose');
+//var task = new Task();
+//var taskSchema = task.
+var TaskModel = mongoose.model('Task');
+
 module.exports = function(app,passport) {
     //-----------------login-----------------
     //show login
@@ -49,6 +54,16 @@ module.exports = function(app,passport) {
             if (err) return handleError(err);
         });
 
+    });
+
+    app.get('/tasks',function(req,res){
+       console.log('Fetching tasks');
+        //find all tasks
+        TaskModel.find({}, function(err, result){
+            if ( err ) throw err;
+            //Save the result into the response object.
+            res.json(result);
+        });
     });
 
    /* //---logout---
